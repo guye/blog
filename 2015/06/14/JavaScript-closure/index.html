@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JavaScript 中的闭包</title>
+	<meta name="description" content="JavaScript closure 闭包">
+	
+	<link rel="canonical" href="http://zw-tech.comblog/2015/06/14/JavaScript-closure/">
+	<link rel="alternate" type="application/rss+xml" title="正为信息" href="http://zw-tech.comblog/feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="blog/css/main.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="blogstatic/css/header.css">
+	<link rel="stylesheet" type="text/css" href="blogstatic/css/footer.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="blog/static/css/bootstrap.min.css"> -->
+	
+
+	<link rel="stylesheet" type="text/css" href="blogstatic/css/index.css">
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <script type="text/javascript" src="blog/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="blog/static/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="blogstatic/js/index.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+
+	<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header class="clearfix">
+
+  <h1>
+    <a href="#">
+    </a>
+  </h1>
+
+  <nav>
+    <ul>
+      <li><a href="http://zw-tech.com/index.html"><span>首页</span></a></li>
+      <li class="has-menu"><a href="http://zw-tech.com/products.html"><span>产品</span></a>
+        <ul>
+          <li  class="has-ul"><a href="http://zw-tech.com/products.html">厨房家电</a>
+            <ul>
+              <li><a href="http://zw-tech.com/products.html#item_0">煲汤机控制板I型</a></li>
+              <li><a href="http://zw-tech.com/products.html#item_1">煲汤机控制板I型</a></li>
+              <li><a href="http://zw-tech.com/products.html#item_2">搅拌机控制板</a></li>
+              <li><a href="http://zw-tech.com/products.html#item_3">果汁机控制板</a></li>
+              <li><a href="http://zw-tech.com/products.html#item_4">炒菜机控制板</a></li>
+              <li><a href="http://zw-tech.com/products.html#item_5">智能料理机控制板</a></li>
+            </ul>
+          </li>
+          <li class="has-ul"><a href="http://zw-tech.com/products.html#item_6">通信板卡</a>
+            <ul>
+              <li><a href="http://zw-tech.com/products.html#item_6">话音网关板</a></li>
+              <li><a href="http://zw-tech.com/products.html#item_7">话音手柄板</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="http://zw-tech.com/solution.html">解决方案</a></li>
+      <li class="has-menu"><a href="http://zw-tech.com/services.html">定制服务</a>
+        <!--
+        <ul>
+            <li><a href="http://wrtnode.cc/html/software.html">UIxO</a></li>
+        </ul>
+        -->
+      </li>
+      <li><a href="http://zw-tech.com/blog/">技术文章</a></li>
+      <li><a href="http://zw-tech.com/about.html">关于</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>JavaScript 中的闭包</h1>
+        <p>Jun 14, 2015</p>
+      </header>
+      <hr>
+      <article>
+        <ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">闭包的例子</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">应用</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">常见错误之循环闭包</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">封装</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">总结</a></li>
+</ul>
+
+<p>本文为慕课网 <a href="http://www.imooc.com/learn/277">JavaScript深入浅出</a> 笔记。</p>
+
+<h2 id="section">闭包的例子</h2>
+
+<pre><code>function outer() {
+    var localVal = 30;
+    return localVal;
+}
+
+console.log(outer()); //30
+
+function outer2() {
+    var localVal = 30;
+    return function() {
+        return localVal;
+    };
+}
+
+var func = outer2();
+console.log(func()); //30
+</code></pre>
+
+<p>对于第一个普通的函数，在执行过之后，它的局部变量就可以被释放。</p>
+
+<p>对于第二个函数，<code>localVal</code> 是不能被释放的。因为调用 <code>outer2()</code> 后，返回的是匿名函数，匿名函数可以访问外部的 <code>outer2()</code> 中的局部变量，并返回了这个局部变量 localVal。当 <code>outer2()</code> 赋值给 <code>func</code> 后，再次调用 <code>func()</code>，仍能访问到局部变量 <code>localVal</code>。这种情况就是闭包。</p>
+
+<hr />
+
+<h2 id="section-1">应用</h2>
+
+<ul>
+  <li>
+    <p><strong>所谓闭包就是：子函数可以使用父函数中的局部变量。</strong></p>
+
+    <pre><code>  ! function() {
+      var localData = "localData here";
+      document.addEventListener('click',
+          function() {
+              console.log(localData); //这里访问外部数据
+          });
+  }();
+
+  ! function() {
+      var localData = "localData here";
+      var url = "http://www.baidu.com/";
+      $.ajax({
+          url: url,
+          success: function() {
+              // do sth...
+              console.log(localData); //这里访问外部数据
+          }
+      });
+  }()
+</code></pre>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="section-2">常见错误之循环闭包</h2>
+
+<p>比如我们想循环绑定点击事件</p>
+
+<pre><code>document.body.innerHTML = "&lt;div id=div1&gt;aaa&lt;/div&gt;&lt;div id=div2&gt;bbb&lt;/div&gt;&lt;div id=div3&gt;ccc&lt;/div&gt;";
+for (var i = 1; i &lt; 4; i++) {
+    document.getElementById('div' + i).
+    addEventListener('click', function() {
+        alert(i); // all are 4!
+    });
+}
+</code></pre>
+
+<p>上面的代码，我们点击任何一个 div，弹出的都是 4</p>
+
+<p>这是因为，for 循环中的 i 是一个全局变量。这里内函数的点击事件，访问到的是循环后的 i 值，所以是 4</p>
+
+<pre><code>document.body.innerHTML = "&lt;div id=div1&gt;aaa&lt;/div&gt;&lt;div id=div2&gt;bbb&lt;/div&gt;&lt;div id=div3&gt;ccc&lt;/div&gt;";
+for (var i = 1; i &lt; 4; i++) {
+    ! function(i) {
+        document.getElementById('div' + i).
+        addEventListener('click', function() {
+            alert(i); // 1, 2, 3
+        });
+    }(i);
+}
+</code></pre>
+
+<p>这里使用了立即执行函数，并给匿名函数赋值 i，这样点击事件每一次就会访问到相应的 i。</p>
+
+<hr />
+
+<h2 id="section-3">封装</h2>
+
+<pre><code>(function() {
+    var _userId = 9527;
+    var _typeId = "item";
+    var exp = {};
+
+    function converter(userId) {
+        return +userId;
+    }
+
+    exp.getUserId = function() {
+        return converter(_userId);
+    };
+
+    exp.getTypeId = function() {
+        return _typeId;
+    };
+
+    window.a = exp;
+})();
+
+console.log(a.getUserId()); //9527
+console.log(a.getTypeId()); //item
+
+console.log(a._userId); //undefined
+console.log(a._typeId); //undefined
+console.log(converter); //Uncaught ReferenceError: converter is not defined
+</code></pre>
+
+<p>上面的代码通过闭包实现了一个封装。</p>
+
+<hr />
+
+<h2 id="section-4">总结</h2>
+
+<blockquote>
+  <ul>
+    <li>
+      <p>在计算机科学中，闭包（也称词法闭包或函数闭包）是指一个函数或函数的引用，与一个引用环境绑定在一起。这个引用环境是一个存储该函数每个非局部变量（也叫自由变量）的表。</p>
+    </li>
+    <li>
+      <p>闭包，不同于一般的函数，它允许一个函数在立即词法作用域外调用时，仍可访问非本地变量。</p>
+    </li>
+  </ul>
+
+  <p>from 维基百科</p>
+</blockquote>
+
+<ul>
+  <li>闭包的优点
+    <ul>
+      <li>灵活和方便</li>
+      <li>封装</li>
+    </ul>
+  </li>
+  <li>缺点
+    <ul>
+      <li>空间浪费</li>
+      <li>内存泄露</li>
+      <li>性能消耗</li>
+    </ul>
+  </li>
+</ul>
+
+      </article>
+      <hr>
+      <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a></div>
+      <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    </div>
+    <div class="post-area post comment">
+      <!-- 多说评论框 start -->
+      
+      <div class="ds-thread" data-thread-key="/2015/06/14/JavaScript-closure" data-title="JavaScript 中的闭包" data-url="http://zw-tech.com/blog//2015/06/14/JavaScript-closure/"></div>
+      
+      <!-- 多说评论框 end -->
+    </div>
+  </div>
+
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <div id="top" data-toggle="tooltip" data-placement="left" title="回到顶部">
+      <a href="#">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <div style="background-color: #282838;">
+<footer class="clearfix">
+  <div class="has-border">
+    <h3>联系我们</h3>
+    <p>邮件：marketing#zw-tech.com</p>
+    <p>电话：+86 0755-26019419</p>
+  </div>
+  <div class="has-border">
+    <h3>定制服务</h3>
+    <p><a href="http://zw-tech.com/services.html">通信板卡定制</a></p>
+    <p><a href="http://zw-tech.com/services.html">家电板卡定制</a></p>
+  </div>
+  <div>
+    <h3>About</h3>
+    <p>
+      <a href="http://zw-tech.com/about.html">About us</a></p>
+  </div>
+</footer>
+</div>
+<div class="copyright">
+  <p>© CopyRight 2014-2018, www.zw-tech.com, Inc.All Rights Reserved. 备案号：<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备XXXXXXXX号</a></p>
+</div>
+
+
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zw-tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 在新窗口中打开 -->
+  <script type="text/javascript">
+    function addBlankTargetForLinks () {
+      $('a[href^="http"]').each(function(){
+          $(this).attr('target', '_blank');
+      });
+    }
+    //每次在有DOM插入时触发
+    $(document).bind('DOMNodeInserted', function(event) {
+      addBlankTargetForLinks();
+    });
+  </script>
+  </body>
+</html>
