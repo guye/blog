@@ -5,27 +5,20 @@
     <description>正为信息技术文章</description>
     <link>http://zw-tech.com/blog/</link>
     <atom:link href="http://zw-tech.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 29 Oct 2015 14:48:51 +0800</pubDate>
-    <lastBuildDate>Thu, 29 Oct 2015 14:48:51 +0800</lastBuildDate>
+    <pubDate>Thu, 29 Oct 2015 15:18:51 +0800</pubDate>
+    <lastBuildDate>Thu, 29 Oct 2015 15:18:51 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>Pid Controll Algorithm</title>
-        <description>&lt;p&gt;﻿—
-layout: post
-title:  “PID算法”
-date:   2015-07-24 00:06:05
-categories: 控制算法
-excerpt: 算法介绍
-—&lt;/p&gt;
-
-&lt;ul id=&quot;markdown-toc&quot;&gt;
+        <title>PID算法</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#pid&quot; id=&quot;markdown-toc-pid&quot;&gt;PID简介&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;数字形式&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;算法流程&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;pid&quot;&gt;PID简介&lt;/h2&gt;
+
 &lt;p&gt;PID控制是目前工程上应用最广的一种控制方法，它的优点在于结构简单，且不依赖被控对象模型，控制所需的信息量也很少，因而非常易于工程实现，同时通过参数的调整也可获得较好的控制效果。
 PID的三个参数——P（Proportional，比例）、I（Integration，积分）、D（Differentiation，微分）对时域响应的影响：&lt;/p&gt;
 
@@ -38,9 +31,9 @@ PID的三个参数——P（Proportional，比例）、I（Integration，积分�
 &lt;p&gt;框图如下图所示：
 &lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_4.jpg&quot; alt=&quot;pidScheme&quot; /&gt;&lt;br /&gt;
 PID控制的是误差信号e(t) = r(t)-c(t)。PID控制律写成如下形式：
-&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_1.jpg&quot; alt=&quot;pidScheme&quot; /&gt;
+&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_1.gif&quot; alt=&quot;1&quot; /&gt;
 或
-&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_8.jpg&quot; alt=&quot;pidScheme&quot; /&gt;
+&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_8.gif&quot; alt=&quot;2&quot; /&gt;
 —&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;数字形式&lt;/h2&gt;
@@ -50,8 +43,8 @@ PID控制的是误差信号e(t) = r(t)-c(t)。PID控制律写成如下形式：
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;位置式PID控制:&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_5.jpg&quot; alt=&quot;pidScheme&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;增量式PID控制：&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_6.jpg&quot; alt=&quot;pidScheme&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;位置式PID控制:&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_5.gif&quot; alt=&quot;3&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;增量式PID控制：&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_6.gif&quot; alt=&quot;4&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -74,17 +67,19 @@ PID控制的是误差信号e(t) = r(t)-c(t)。PID控制律写成如下形式：
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;增量式PID算法流程：&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_7.jpg&quot; alt=&quot;pidScheme&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;增量式PID算法流程：&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_7.jpg&quot; alt=&quot;5&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;位置式PID算法流程：&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_2.jpg&quot; alt=&quot;pidScheme&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;位置式PID算法流程：&lt;img src=&quot;http://zw-tech.com/blog/css/pics/pid_2.jpg&quot; alt=&quot;6&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Thu, 29 Oct 2015 00:00:00 +0800</pubDate>
+        <pubDate>Thu, 29 Oct 2015 08:06:05 +0800</pubDate>
         <link>http://zw-tech.com/blog/2015/10/29/PID-controll-algorithm/</link>
         <guid isPermaLink="true">http://zw-tech.com/blog/2015/10/29/PID-controll-algorithm/</guid>
         
+        
+        <category>css</category>
         
       </item>
     

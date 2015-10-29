@@ -1,18 +1,110 @@
-<p>﻿—
-layout: post
-title:  “PID算法”
-date:   2015-07-24 00:06:05
-categories: 控制算法
-excerpt: 算法介绍
-—</p>
+<!DOCTYPE html>
+<html>
 
-<ul id="markdown-toc">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PID算法</title>
+	<meta name="description" content="算法介绍">
+	
+	<link rel="canonical" href="http://zw-tech.com/blog/2015/10/29/PID-controll-algorithm/">
+	<link rel="alternate" type="application/rss+xml" title="正为信息" href="http://zw-tech.com/blog/feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/blogcss/main.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/blog/static/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/blog/static/css/footer.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/blog/static/css/bootstrap.min.css"> -->
+	
+
+	<link rel="stylesheet" type="text/css" href="/blog/static/css/index.css">
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <script type="text/javascript" src="/blog/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/blog/static/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/blog/static/js/index.js"></script>
+	<script type="text/javascript" src="http://zw-tech.com/js/vendor/jquery.cslider.js"></script>
+	<script type="text/javascript" src="http://zw-tech.com/js/vendor/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script type="text/javascript" src="http://zw-tech.com/js/vendor/slick.js"></script>
+	<script type="text/javascript" src="http://zw-tech.com/js/vendor/index.js"></script>
+
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header class="clearfix">
+
+  <h1 style="margin-bottom: 0; margin-top: 0;">
+    <a href="#">
+    </a>
+  </h1>
+
+  <nav>
+    <ul style="margin-bottom: 0; margin-top: 0; padding-left: 0;">
+      <li><a href="../index.html"><span>首页</span></a></li>
+      <li class="has-menu"><a href="../products.html"><span>产品</span></a>
+        <ul>
+          <li  class="has-ul"><a href="../products.html">厨房家电</a>
+            <ul>
+              <li><a href="../products.html#item_0">煲汤机控制板I型</a></li>
+              <li><a href="../products.html#item_1">煲汤机控制板I型</a></li>
+              <li><a href="../products.html#item_2">搅拌机控制板</a></li>
+              <li><a href="../products.html#item_3">果汁机控制板</a></li>
+              <li><a href="../products.html#item_4">炒菜机控制板</a></li>
+              <li><a href="../products.html#item_5">智能料理机控制板</a></li>
+            </ul>
+          </li>
+          <li class="has-ul"><a href="../products.html#item_6">通信板卡</a>
+            <ul>
+              <li><a href="../products.html#item_6">话音网关板</a></li>
+              <li><a href="../products.html#item_7">话音手柄板</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="../solution.html">解决方案</a></li>
+      <li class="has-menu"><a href="../services.html">定制服务</a>
+        <!--
+        <ul>
+            <li><a href="http://wrtnode.cc/html/software.html">UIxO</a></li>
+        </ul>
+        -->
+      </li>
+      <li><a href="#">技术文章</a></li>
+      <li><a href="../about.html">关于</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>PID算法</h1>
+        <p>Oct 29, 2015</p>
+      </header>
+      <hr>
+      <article>
+        <ul id="markdown-toc">
   <li><a href="#pid" id="markdown-toc-pid">PID简介</a></li>
   <li><a href="#section" id="markdown-toc-section">数字形式</a></li>
   <li><a href="#section-1" id="markdown-toc-section-1">算法流程</a></li>
 </ul>
 
 <h2 id="pid">PID简介</h2>
+
 <p>PID控制是目前工程上应用最广的一种控制方法，它的优点在于结构简单，且不依赖被控对象模型，控制所需的信息量也很少，因而非常易于工程实现，同时通过参数的调整也可获得较好的控制效果。
 PID的三个参数——P（Proportional，比例）、I（Integration，积分）、D（Differentiation，微分）对时域响应的影响：</p>
 
@@ -25,9 +117,9 @@ PID的三个参数——P（Proportional，比例）、I（Integration，积分�
 <p>框图如下图所示：
 <img src="http://zw-tech.com/blog/css/pics/pid_4.jpg" alt="pidScheme" /><br />
 PID控制的是误差信号e(t) = r(t)-c(t)。PID控制律写成如下形式：
-<img src="http://zw-tech.com/blog/css/pics/pid_1.jpg" alt="pidScheme" />
+<img src="http://zw-tech.com/blog/css/pics/pid_1.gif" alt="1" />
 或
-<img src="http://zw-tech.com/blog/css/pics/pid_8.jpg" alt="pidScheme" />
+<img src="http://zw-tech.com/blog/css/pics/pid_8.gif" alt="2" />
 —</p>
 
 <h2 id="section">数字形式</h2>
@@ -37,8 +129,8 @@ PID控制的是误差信号e(t) = r(t)-c(t)。PID控制律写成如下形式：
 <hr />
 
 <ul>
-  <li>位置式PID控制:<img src="http://zw-tech.com/blog/css/pics/pid_5.jpg" alt="pidScheme" /></li>
-  <li>增量式PID控制：<img src="http://zw-tech.com/blog/css/pics/pid_6.jpg" alt="pidScheme" /></li>
+  <li>位置式PID控制:<img src="http://zw-tech.com/blog/css/pics/pid_5.gif" alt="3" /></li>
+  <li>增量式PID控制：<img src="http://zw-tech.com/blog/css/pics/pid_6.gif" alt="4" /></li>
 </ul>
 
 <hr />
@@ -61,9 +153,94 @@ PID控制的是误差信号e(t) = r(t)-c(t)。PID控制律写成如下形式：
 
 <ul>
   <li>
-    <p>增量式PID算法流程：<img src="http://zw-tech.com/blog/css/pics/pid_7.jpg" alt="pidScheme" /></p>
+    <p>增量式PID算法流程：<img src="http://zw-tech.com/blog/css/pics/pid_7.jpg" alt="5" /></p>
   </li>
   <li>
-    <p>位置式PID算法流程：<img src="http://zw-tech.com/blog/css/pics/pid_2.jpg" alt="pidScheme" /></p>
+    <p>位置式PID算法流程：<img src="http://zw-tech.com/blog/css/pics/pid_2.jpg" alt="6" /></p>
   </li>
 </ul>
+
+      </article>
+      <hr>
+      <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a></div>
+      <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    </div>
+    <div class="post-area post comment">
+      <!-- 多说评论框 start -->
+      
+      <div class="ds-thread" data-thread-key="/2015/10/29/PID-controll-algorithm" data-title="PID算法" data-url="http://zw-tech.com/blog//2015/10/29/PID-controll-algorithm/"></div>
+      
+      <!-- 多说评论框 end -->
+    </div>
+  </div>
+
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <div id="top" data-toggle="tooltip" data-placement="left" title="回到顶部">
+      <a href="#">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <div style="background-color: #282838;">
+<footer class="clearfix">
+  <div class="has-border">
+    <h3>联系我们</h3>
+    <p>邮件：marketing#zw-tech.com</p>
+    <p>电话：+86 0755-26019419</p>
+  </div>
+  <div class="has-border">
+    <h3>定制服务</h3>
+    <p><a href="http://zw-tech.com/services.html">通信板卡定制</a></p>
+    <p><a href="http://zw-tech.com/services.html">家电板卡定制</a></p>
+  </div>
+  <div>
+    <h3>About</h3>
+    <p>
+      <a href="http://zw-tech.com/about.html">About us</a></p>
+  </div>
+</footer>
+</div>
+<div class="copyright">
+  <p>© CopyRight 2014-2018, www.zw-tech.com, Inc.All Rights Reserved. 备案号：<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备XXXXXXXX号</a></p>
+</div>
+
+
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zw-tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 在新窗口中打开 -->
+  <script type="text/javascript">
+    function addBlankTargetForLinks () {
+      $('a[href^="http"]').each(function(){
+          $(this).attr('target', '_blank');
+      });
+    }
+    //每次在有DOM插入时触发
+    $(document).bind('DOMNodeInserted', function(event) {
+      addBlankTargetForLinks();
+    });
+  </script>
+  </body>
+</html>
