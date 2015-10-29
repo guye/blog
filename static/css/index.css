@@ -3,6 +3,8 @@
  */
 /* commom */
 body {
+	margin: 0;
+	padding: 0;
 	background-color: #F1F4F9;
     font-family: 'Microsoft YaHei', 'Helvetica','Arial','SimHei', sans-serif;
 }
