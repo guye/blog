@@ -139,9 +139,11 @@ nav>ul>li:first-child:after{
     -ms-transform:rotate(17deg);
     transform:rotate(17deg);
 }
+
 nav{
     margin:30px 40px;
 }
+
 nav>ul>li{
     position:relative;
     float:left;
@@ -150,6 +152,11 @@ nav>ul>li{
     line-height:1em;
     padding:10px 20px;
     cursor:pointer;
+}
+
+nav a:hover, nav a:active {
+    color:#221815;
+    text-decoration:none;
 }
 
 header hr{
@@ -166,9 +173,4 @@ header hr{
 ::selection {
     background: #b3d4fc;
     text-shadow: none;
-}
-
-nav a:hover, nav a:active {
-    color:#221815;
-    text-decoration:none;
 }
