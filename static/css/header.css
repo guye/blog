@@ -139,11 +139,9 @@ nav>ul>li:first-child:after{
     -ms-transform:rotate(17deg);
     transform:rotate(17deg);
 }
-
 nav{
     margin:30px 40px;
 }
-
 nav>ul>li{
     position:relative;
     float:left;
