@@ -30,6 +30,7 @@ header.clearfix {
     float: left;
     font-size: 100%;
     font-weight: normal;
+    line-height: 1.5;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
