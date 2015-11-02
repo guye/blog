@@ -637,7 +637,7 @@ moduleA = function() {
       });
 
       $('a[href^="http://zw-tech.com"]').each(function(){
-        $(this).attr('target', '_seft');
+        $(this).removeAttribute('target');
       });
     }
     //每次在有DOM插入时触发
